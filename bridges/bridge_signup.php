@@ -35,23 +35,6 @@ if (!isset($_POST['age'])) {
     exit();
 }
 
-if (!isset($_FILES['pic'])) {
-    header('Location: /signup');
-    echo 'pic';
-    exit();
-}
-
-echo var_dump($_FILES['pic']);
-$valid_extensions = ['png', 'jpg', 'jpeg', 'gif', 'zip', 'pdf'];
-$image_type = mime_content_type($_FILES['pic']['tmp_name']); // image/png
-$extension = strrchr($image_type, '/'); // /png ... /tmp ... /jpg
-$extension = ltrim($extension, '/'); // png ... jpg ... plain
-
-if (!in_array($extension, $valid_extensions)) {
-    echo "mmm.. hacking me?";
-    header('Location: /signup');
-    exit();
-}
 
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     header('Location: /signup');
@@ -75,9 +58,6 @@ if (
     exit();
 }
 
-$random_image_name = bin2hex(random_bytes(16)) . ".$extension";
-move_uploaded_file($_FILES['pic']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . "/images/$random_image_name");
-echo 'File uploaded';
 try {
     $db_path = $_SERVER['DOCUMENT_ROOT'] . '/db/users.db';
     $db = new PDO("sqlite:$db_path");
@@ -93,7 +73,7 @@ try {
     $q->bindValue(':password', password_hash($_POST['pass'], PASSWORD_DEFAULT));
     $q->bindValue(':user_role', 2);
     $q->bindValue(':active', 1);
-    $q->bindValue(':image_path', "/images/$random_image_name");
+    $q->bindValue(':image_path', "/images/default.jpg");
     $q->execute();
     $user = $q->fetch();
     if (!$user) {

@@ -23,8 +23,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
             <input type="password" data-validate="con_pass" name="con_pass">
             <label for="age">Age</label>
             <input type="text" data-validate="age" name="age" maxlength="2">
-            <label for="pic">Profile picture</label>
-            <input type="file" data-validate="pic" name="pic">
             <button>Sign up</button>
             <div>
                 <p>Already have an account? <a href="/login">login</a></p>
