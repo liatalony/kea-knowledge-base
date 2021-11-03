@@ -17,6 +17,7 @@ try {
     user_password     TEXT,
     user_role         INT,
     active            BOOLEAN,
+    image_path        TEXT,
     PRIMARY KEY(user_uuid)
   ) WITHOUT ROWID');
   $q->execute();
