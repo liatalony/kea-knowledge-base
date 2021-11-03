@@ -5,6 +5,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/router.php');
 // ##############################
 get('/', '/views/view_admin.php');
 
+get('/activate/$user_uuid', '/views/view_activate.php');
+
 get('/admin', '/views/view_admin.php');
 
 get('/login', '/views/view_login.php');
@@ -19,7 +21,7 @@ get('/signup', '/views/view_signup.php');
 
 get('/users', '/views/view_users.php');
 
-get('/welcome-email', '/bridges/bridge_signup_email.php');
+get('/welcome', '/views/view_new_user.php');
 
 get('/get-password', '/views/view_forgot.php');
 

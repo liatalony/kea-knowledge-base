@@ -72,21 +72,22 @@ try {
     $q->bindValue(':age', $_POST['age']);
     $q->bindValue(':password', password_hash($_POST['pass'], PASSWORD_DEFAULT));
     $q->bindValue(':user_role', 2);
-    $q->bindValue(':active', 1);
+    $q->bindValue(':active', 0);
     $q->bindValue(':image_path', "/images/default.jpg");
     $q->execute();
     $user = $q->fetch();
+
     if (!$user) {
         //SEND EMAIL
-        session_start();
-        $_SESSION['signup_name'] = "{$_POST['first_name']} {$_POST['last_name']}";
-        $_SESSION['signup_email'] = $_POST['email'];
-        header('Location: /welcome-email');
+        require_once($_SERVER['DOCUMENT_ROOT'].'/bridges/bridge_activate.php');
+        header('Location: /welcome');
         exit();
     }
 
     header('Location: /signup');
     exit();
+ 
 } catch (PDOException $ex) {
     echo $ex;
+    // header('Location: /404');
 }
