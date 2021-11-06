@@ -30,8 +30,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
 ?>
 <title><?= "{$user['first_name']}'s profile" ?></title>
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
-?>
+// require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
+// ?>
 
 <main>
     <h1 class="welcome">My profile</h1>

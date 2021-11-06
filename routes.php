@@ -33,6 +33,10 @@ get('/test', '/test.php');
 
 get('/post', '/views/view_create_post.php');
 
+get('/post/$post_id', '/views/view_posts_single.php');
+
+get('/feed', '/views/view_posts_feed.php');
+
 
 
 // ##############################¨

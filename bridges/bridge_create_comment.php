@@ -29,7 +29,7 @@ try {
 
     // the next line is wrong - we need to somehow insert the post id 
     // which the comment refers to
-    $q->bindValue(':post_id', 'posts.post_id');
+    $q->bindValue(':post_id', $_POST['postId']);
     $q->execute();
     $comment = $q->fetch();
     header('Location: /post');
