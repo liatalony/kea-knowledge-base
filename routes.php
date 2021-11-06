@@ -31,6 +31,8 @@ get('/sending-email/$user_uuid', '/bridges/bridge_delete_email.php');
 
 get('/test', '/test.php');
 
+get('/post', '/views/view_create_post.php');
+
 
 
 // ##############################¨
@@ -60,8 +62,9 @@ post('/update-password', '/bridges/bridge_update_password.php');
 
 post('/users/delete/$user_id', 'apis/api_delete_user.php');
 
+post('/post', '/bridges/bridge_create_post.php');
 
-
+post('/comment', '/bridges/bridge_create_comment.php');
 
 
 // ##############################¨
