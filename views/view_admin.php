@@ -28,9 +28,9 @@ try {
 require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
 ?>
 <title><?= "{$user['first_name']} {$user['last_name']}" ?></title>
-<?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
-?>
+<!-- <?php
+// require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
+// ?> -->
 
 <main>
     <h1 class="welcome"><?= "Welcome {$user['first_name']}" ?></h1>

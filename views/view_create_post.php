@@ -1,18 +1,18 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
 ?>
-<title>create a post</title>
-</head>
+<!-- <title>create a post</title> -->
+<!-- </head> -->
 
-<body class="main">
+<!-- <body class="main"> -->
 
-    <header>
+    <!-- <header>
         <nav>
             <a href="/admin">Home</a>
             <a href="/profile">Profile</a>
             <a href="/logout">Log out</a>
         </nav>
-    </header>
+    </header> -->
 
     <div class="post_wrapper">
         <form action="post" method="POST" onsubmit="return validate()" enctype="multipart/form-data">
@@ -23,8 +23,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
         </form>
     </div>
 
+    <h1>My posts only:</h1>
     <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_posts_feed.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_posts_by_user.php');
     ?>
 
     <script src="../js/validator.js"></script>

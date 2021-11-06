@@ -10,6 +10,7 @@
             }
             ?>
             <a href="/admin">Home</a>
+            <a href="/admin">New post</a>
             <a href="/profile">Profile</a>
             <a href="/logout">Log out</a>
         </nav>
