@@ -22,8 +22,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
             <button>Send</button>
         </form>
     </div>
-
-    <h1>My posts only:</h1>
+    <div id="posts">
+    <h2>My posts:</h2>
+    </div>
     <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_posts_by_user.php');
     ?>

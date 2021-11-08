@@ -21,16 +21,16 @@ $q = $db->prepare('SELECT * FROM posts
 $q->execute();
 $posts = $q->fetchAll();
 ?>
+
 <h1>All posts from all users</h1>
 <div id="posts">
 
 <?php foreach ($posts as $post) {
 ?>
     <div class="single_post_wrapper">
-        <div>Post user name:<?=$post['first_name']?></div>
-        <div>Post text: <?=$post['post_text']?></div>
+        <h4><?=$post['post_text']?></h4>
+        <div>Posted by:<?=$post['first_name']?></div>
         <div>Post time: <?=$post['post_time']?></div>
-        <div>This is the post id: <?=$post['post_id']?></div>
         <div class="comment_wrapper">
             <form action="comment" method="POST" onsubmit="return validate()" enctype="multipart/form-data">
                 <label for="your_message">Leave a comment</label>

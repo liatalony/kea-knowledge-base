@@ -70,7 +70,9 @@ post('/users/delete/$user_id', 'apis/api_delete_user.php');
 
 post('/post', '/bridges/bridge_create_post.php');
 
+//leave comment from main feed page or from /post/number individual post
 post('/comment', '/bridges/bridge_create_comment.php');
+post('/post/comment', '/bridges/bridge_create_comment.php');
 
 
 // ##############################¨

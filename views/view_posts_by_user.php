@@ -1,5 +1,4 @@
 <?php 
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
 
 session_start();
@@ -20,13 +19,15 @@ $q = $db->prepare('SELECT post_id, post_text, post_time FROM posts
                        $q->bindValue(':user_uuid', $_SESSION['user_uuid']);
 $q->execute();
 $posts = $q->fetchAll();
+?>
 
-echo '<div id="posts">';
+<div id="posts">
+
+<?php
 foreach ($posts as $post) {
 ?>
     <div class="single_post_wrapper">
-        <div>Post text: <?=$post['post_text']?></div>
-        <div>Post id: <?=$post['post_id']?></div>
+        <p><?=$post['post_text']?></p>
         <div>Post time: <?=$post['post_time']?></div>
         <div class="comment_wrapper">
             <form action="comment" method="POST" onsubmit="return validate()" enctype="multipart/form-data">
@@ -39,9 +40,14 @@ foreach ($posts as $post) {
             <a href="/post/<?= $post['post_id'] ?>">See post</a>
         </div>
     </div>
+
 <?php
 }
-echo '</div>';
+?>
+
+</div>
+
+<?php
 } catch (PDOException $ex) {
 echo $ex;
 }
