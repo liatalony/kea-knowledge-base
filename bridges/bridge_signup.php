@@ -29,13 +29,6 @@ if (!isset($_POST['con_pass'])) {
     exit();
 }
 
-if (!isset($_POST['age'])) {
-    header('Location: /signup');
-    echo 'age';
-    exit();
-}
-
-
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     header('Location: /signup');
     echo 'bad email';
@@ -58,29 +51,35 @@ if (
     exit();
 }
 
+
 try {
     $db_path = $_SERVER['DOCUMENT_ROOT'] . '/db/users.db';
     $db = new PDO("sqlite:$db_path");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $q = $db->prepare(' INSERT INTO users
-                    VALUES (:user_uuid , :first_name , :last_name , :email , :age , :password ,:user_role, :active, :image_path)');
+                    VALUES (:user_uuid , :first_name , :last_name , :email, :salt , :password ,:user_role, :active, :image_path)');
     $q->bindValue(':user_uuid', bin2hex(random_bytes(16)));
     $q->bindValue(':first_name', $_POST['first_name']);
     $q->bindValue(':last_name', $_POST['last_name']);
     $q->bindValue(':email', $_POST['email']);
-    $q->bindValue(':age', $_POST['age']);
+    $q->bindValue(':salt', bin2hex(openssl_random_pseudo_bytes(10)));
+
+    // $hashed_salted=hash("sha256", $_POST['pass'].':salt');
+    // $q->bindValue(':password', $hashed_salted);
     $q->bindValue(':password', password_hash($_POST['pass'], PASSWORD_DEFAULT));
+
     $q->bindValue(':user_role', 2);
-    $q->bindValue(':active', 0);
+    $q->bindValue(':active', 1);
     $q->bindValue(':image_path', "/images/default.jpg");
     $q->execute();
     $user = $q->fetch();
-
+    
+    
     if (!$user) {
         //SEND EMAIL
-        require_once($_SERVER['DOCUMENT_ROOT'].'/bridges/bridge_activate.php');
-        header('Location: /welcome');
+        // require_once($_SERVER['DOCUMENT_ROOT'].'/bridges/bridge_activate.php');
+        header('Location: /login');
         exit();
     }
 

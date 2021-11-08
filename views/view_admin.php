@@ -33,7 +33,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
 // ?> -->
 
 <main>
-    <h1 class="welcome"><?= "Welcome {$user['first_name']}" ?></h1>
+    <h1 class="welcome"><?= "Welcome {$user['first_name']} to KEA's Knowledge base" ?></h1>
     <?php
     try {
         $db_path = $_SERVER['DOCUMENT_ROOT'] . '/db/users.db';

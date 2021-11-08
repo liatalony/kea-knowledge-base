@@ -13,7 +13,7 @@ try {
     first_name        TEXT,
     last_name         TEXT,
     email             TEXT UNIQUE,
-    age               INT,
+    salt              TEXT,
     user_password     TEXT,
     user_role         INT,
     active            BOOLEAN,

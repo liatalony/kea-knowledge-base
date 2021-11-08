@@ -44,7 +44,9 @@ post('/admin', '/bridges/bridge_create_project.php');
 
 post('/deactivate', '/bridges/bridge_deactivate.php');
 
-post('/create-users-table', '/db/db_create_table.php');
+post('/create-users-table', '/db/db_create_table_users.php');
+post('/create-comments-table', '/db/db_create_table_comments.php');
+post('/create-posts-table', '/db/db_create_table_posts.php');
 
 post('/login', '/bridges/bridge_login.php');
 
