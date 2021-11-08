@@ -18,10 +18,15 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
         <form action="post" method="POST" onsubmit="return validate()" enctype="multipart/form-data">
         <h1>make a post</h1>
             <label for="your_message">Your message</label>
-            <input type="text" placeholder="Write your message here" data-validate="str" name="message" autocomplete="off">            
+            <input type="text" placeholder="Write your message here" data-validate="str" name="message" autocomplete="off">  
+            
+            <label for="screenshot">Add screenshot</label>
+            <input type="file" accept="image/*" name="screenshot">
+
             <button>Send</button>
         </form>
     </div>
+
     <div id="posts">
     <h2>My posts:</h2>
     </div>

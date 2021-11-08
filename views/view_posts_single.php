@@ -40,6 +40,9 @@ $comments = $q->fetchAll();
 
     <h2><?= $post['post_text'] ?></h2>
     <p>posted by: <?= $post['first_name'].' '.$post['last_name']?></h2>
+    <div class="img">
+    <img src="/images/<?= $post['post_image_path'] ?>" alt="screenshot">
+    </div>
 
 <?php     
 foreach ($comments as $comment) {

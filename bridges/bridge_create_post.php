@@ -5,6 +5,20 @@ if (!isset($_SESSION['user_uuid'])) {
     exit();
 }
 
+$validExtensions = ['png', 'jpg', 'jpeg', 'gif'];
+$imageType = mime_content_type($_FILES['screenshot']['tmp_name']);
+$extension = strrchr($imageType, '/');
+$extension = ltrim($extension, '/');
+// echo $extension;
+
+if(!in_array($extension, $validExtensions)){
+echo "Image type not supported";
+exit();
+}
+
+$imageName = bin2hex(random_bytes(10)).".$extension";
+move_uploaded_file($_FILES['screenshot']['tmp_name'], "images/$imageName");
+
 try {
     $db_path = $_SERVER['DOCUMENT_ROOT'] . '/db/users.db';
     $db = new PDO("sqlite:$db_path");
@@ -21,7 +35,8 @@ try {
                     );
     $q->bindValue(':post_id', bin2hex(random_bytes(16)));
     $q->bindValue(':post_text', $_POST['message']);
-    $q->bindValue(':post_image_path', bin2hex(random_bytes(16)));
+    // $q->bindValue(':post_image_path', bin2hex(random_bytes(16)));
+    $q->bindValue(':post_image_path', $imageName);
     $q->bindValue(':post_time', date("Y-m-d H:i:s"));
     $q->bindValue(':post_time_last_edit', date("Y-m-d H:i:s"));
     $q->bindValue(':user_uuid', $_SESSION['user_uuid']);
