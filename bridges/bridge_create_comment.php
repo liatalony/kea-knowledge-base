@@ -32,7 +32,7 @@ try {
     $q->bindValue(':post_id', $_POST['postId']);
     $q->execute();
     $comment = $q->fetch();
-    header('Location: /post');
+    header('Location: /feed');
 
 
 } catch (PDOException $ex) {

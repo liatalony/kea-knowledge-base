@@ -21,8 +21,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
             <input type="password" placeholder="Between 6 to 8 characters" data-validate="pass" name="pass">
             <label for="con_pass">Confirm password</label>
             <input type="password" data-validate="con_pass" name="con_pass">
-            <label for="age">Age</label>
-            <input type="text" data-validate="age" name="age" maxlength="2">
             <button>Sign up</button>
             <div>
                 <p>Already have an account? <a href="/login">login</a></p>

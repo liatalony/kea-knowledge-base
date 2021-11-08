@@ -18,6 +18,9 @@
                 // echo '<a href="/users">Users</a>';
             // }
             ?> -->
+            <div class="logo">
+                <a href="#"><img src="/images/logo-main-black-single.png" alt="logo" style="width: 30px;"></a>
+            </div>
             <a href="/admin">Home</a>
             <a href="/feed">Feed</a>
             <a href="/post">New post</a>
