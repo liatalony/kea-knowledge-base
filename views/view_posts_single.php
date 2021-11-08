@@ -1,5 +1,4 @@
 <?php 
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
 
 // get the post id from url:
@@ -10,71 +9,67 @@ if (!isset($_SESSION['user_uuid'])) {
     header('Location: /login');
     exit();
 }
-
-try {
-    $db_path = $_SERVER['DOCUMENT_ROOT'] . '/db/users.db';
-    $db = new PDO("sqlite:$db_path");
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $q = $db->prepare('SELECT *
-    -- posts.post_text, posts.post_id, posts.post_time
-    FROM posts
-    --WHERE post_id = :post_id
-    WHERE post_id = :post_id');
-    $q->bindValue(':post_id', $postId);
-    $q->execute();
-    $post = $q->fetch();
 ?>
 
 <div id="posts">
 
-    <h2>Post:</h2>
-    <p><?= $post['post_text'] ?></p>
-    
-<?php
-} catch (PDOException $ex) {
-echo $ex;
-}
-
+<?php    
 try {
 $db_path = $_SERVER['DOCUMENT_ROOT'] . '/db/users.db';
 $db = new PDO("sqlite:$db_path");
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-$q = $db->prepare('SELECT comments.comment_text, comments.comment_time, posts.post_text, posts.post_time
--- posts.post_text, posts.post_id, posts.post_time
-FROM comments
---WHERE post_id = :post_id
-INNER JOIN posts
-ON comments.post_id = posts.post_id
-WHERE posts.post_id = :post_id');
+$a = $db->prepare('SELECT *
+                    FROM posts
+                    INNER JOIN users
+                    ON posts.user_uuid = users.user_uuid
+                    WHERE posts.post_id = :post_id');
+$a->bindValue(':post_id', $postId);
+$a->execute();
+$post = $a->fetch();
+
+$q = $db->prepare('SELECT *
+                    FROM comments
+                    INNER JOIN users
+                    ON comments.user_uuid = users.user_uuid
+                    WHERE comments.post_id = :post_id');
 $q->bindValue(':post_id', $postId);
 $q->execute();
-$posts = $q->fetchAll();
+$comments = $q->fetchAll();
+?>
 
+    <h2><?= $post['post_text'] ?></h2>
+    <p>posted by: <?= $post['first_name'].' '.$post['last_name']?></h2>
+
+<?php     
+foreach ($comments as $comment) {
 ?>
-    <h2>All comments/previous comments from this post:</h2>
-<?php 
-foreach ($posts as $post) {
-?>
+
     <div class="single_post_wrapper">
-        
-         <div class="comment_wrapper">
+        <div class="comment_wrapper">
             <div>
-                <p><?= $post['comment_text']?></p>
-                <p><?= $post['comment_time']?></p>
-                <p><?= $postId?></p>
+                <p><?= $comment['comment_text']?></p>
+                <p><?= $comment['comment_time']?></p>
+                <br>
+                <p>Comment by: <?= $comment['first_name']?></p>
             </div>
         </div>
-        
     </div>
-
     
-    
-    <?php
+<?php
 }
 ?>
-<h2>Here add new comments *fix:</h2>
+        <br>
+        <h3>Leave new comments:</h3>
+        <div class="comment_wrapper">
+            <form action="comment" method="POST" onsubmit="return validate()" enctype="multipart/form-data">
+                <label for="your_message">Leave a comment</label>
+                <input type="hidden" name="postId" value="<?= $post['post_id'] ?>"/>
+                <input style="width:250px" type="text" placeholder="Write your comment here" data-validate="str" name="message" autocomplete="off">            
+                <button style="width:50px">Send</button>
+            </form>
+        </div>
+
 </div>
 <?php
 } catch (PDOException $ex) {
