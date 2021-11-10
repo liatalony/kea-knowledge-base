@@ -1,0 +1,117 @@
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+form.profile_form{
+    display: block;
+    margin: 0 auto;
+    width: 400px;
+    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+}
+
+
+.post_wrapper {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#posts {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+div.post_owner{
+    display: flex;
+    flex-direction: row;
+}
+
+div.post_owner h5{
+    margin-top: auto;
+}
+img.feed_profile{
+    display: inline;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.single_post_wrapper{
+   margin: 10px auto;
+   padding: 15px;
+   width: 500px;
+   max-width: 100%;
+   border-radius: 10px;
+   box-shadow: gray 1px 1px 5px;
+}
+
+.single_comment_wrapper{
+   padding: 15px;
+   width: 500px;
+   max-width: 100%;
+   border-radius: 10px;
+   background: rgb(228, 228, 228);
+}
+
+.comment_wrapper img.feed_profile{
+    width: 30px;
+    height: 30px;
+
+}
+.post_text{
+    padding: 1em 0;
+}
+
+.comment_wrapper{
+    margin: 10px auto;
+
+}
+.comment_wrapper form button{
+    width: max-content;
+    margin: 0;
+}
+
+.comment_wrapper form{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.comment_wrapper form input{
+height: max-content;
+margin: 0;
+margin-right: 5px;
+}
+
+.post_img img{
+    max-width: 100%;
+}
+
+sub{
+    font-size: 10px;
+}
+
+.comment_wrapper sub{
+    margin-left: 40px;
+}
+
+.pic_text{
+    display: flex;
+    flex-direction: row;
+}
+
+.comment_link{
+    display: flex;
+    justify-content: end;
+}
