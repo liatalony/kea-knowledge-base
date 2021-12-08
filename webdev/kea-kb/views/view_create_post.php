@@ -16,6 +16,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 
 <div class="post_wrapper">
     <form action="/webdev/kea-kb/post" method="POST" onsubmit="return validate()" enctype="multipart/form-data" class="profile_form">
+        <?php set_csrf(); ?>
         <h1>make a post</h1>
         <label for="your_message">Your message</label>
         <input type="text" placeholder="Write your message here" data-validate="str" name="message" autocomplete="off">

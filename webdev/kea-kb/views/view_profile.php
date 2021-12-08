@@ -43,6 +43,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 
             ?>
                 <form action="/webdev/kea-kb/profile-pic" method="POST" class="profile_form" enctype="multipart/form-data">
+                    <?php set_csrf(); ?>
                     <div class="img" <?php if ($user['image_path'] == 'NULL') {
                                             echo 'class="hidden"';
                                         } ?>>
@@ -57,13 +58,13 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
                 </form>
         </div>
         <form action="/webdev/kea-kb/profile" method="POST" onsubmit="return validate()" class="profile_form" enctype="multipart/form-data">
-
+            <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
             <label for="first_name">First name</label>
-            <input type="text" placeholder="Your first name" data-validate="str" name="first_name" value="<?= $user['first_name'] ?>">
+            <input type="text" placeholder="Your first name" data-validate="str" name="first_name" value="<?= out($user['first_name']) ?>">
             <label for="last_name">Last name</label>
-            <input type="text" placeholder="Your last name" data-validate="str" name="last_name" value="<?= $user['last_name'] ?>">
+            <input type="text" placeholder="Your last name" data-validate="str" name="last_name" value="<?= out($user['last_name']) ?>">
             <label for=" email">Email</label>
-            <input type="text" placeholder="Email" data-validate="email" name="email" value="<?= $user['email'] ?>">
+            <input type="text" placeholder="Email" data-validate="email" name="email" value="<?= out($user['email']) ?>">
             <label for=" pass">Password</label>
             <input type="password" placeholder="Between 6 to 8 characters" data-validate="pass" name="pass">
             <label for="con_pass">Confirm password</label>
@@ -75,7 +76,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
             if ($_SESSION['user_role'] == 1) {
     ?>
         <form action="/webdev/kea-kb/profile" method="POST" onsubmit="return validate()" class="profile_form" enctype="multipart/form-data">
-
+            <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
             <label for=" pass">Password</label>
             <input type="password" placeholder="Between 6 to 8 characters" data-validate="pass" name="pass">
             <label for="con_pass">Confirm password</label>
@@ -87,7 +88,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
     ?>
     </div>
 </main>
-<script src="../js/validator.js"></script>
+<script src="/webdev/kea-kb/js/validator.js"></script>
 </body>
 
 </html>

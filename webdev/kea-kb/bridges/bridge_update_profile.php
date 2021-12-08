@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/router.php');
+is_csrf_valid();
+
 if ($_SESSION['user_role'] == 2) {
     if (!isset($_SESSION['user_uuid'])) {
         header('Location: /webdev/kea-kb/login');

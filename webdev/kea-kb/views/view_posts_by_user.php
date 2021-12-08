@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/router.php');
 
 session_start();
 if (!isset($_SESSION['user_uuid'])) {
@@ -15,8 +16,10 @@ try {
     $q = $db->prepare('SELECT * FROM posts
                     INNER JOIN users
                     ON posts.user_uuid = users.user_uuid
+                    WHERE users.user_uuid = :user_uuid
                     ORDER BY post_time DESC 
                     ');
+    $q->bindValue(':user_uuid', $_SESSION['user_uuid']);
     $q->execute();
     $posts = $q->fetchAll();
 ?>
@@ -30,11 +33,11 @@ try {
                 <div class="post_owner">
                     <img src="<?= $post['image_path'] ?>" alt="profile_pic" class="feed_profile">
                     <div>
-                        <h4><?= $post['first_name'] . ' ' . $post['last_name'] ?></h4>
+                        <h4><?= out($post['first_name'] . ' ' . $post['last_name']) ?></h4>
                         <sub><?= $post['post_time'] ?></sub>
                     </div>
                 </div>
-                <h4 class="post_text"><?= $post['post_text'] ?></h4>
+                <h4 class="post_text"><?= out($post['post_text']) ?></h4>
 
                 <?php
                 if ($post['post_image_path'] != "none") {
@@ -48,6 +51,7 @@ try {
                 <div class="comment_wrapper">
                     <hr>
                     <form action="/webdev/kea-kb/comment" method="POST" onsubmit="return validate()" enctype="multipart/form-data" class="profile_form">
+                        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
                         <input type="hidden" name="postId" value="<?= $post['post_id'] ?>" />
                         <input type="text" placeholder="Write your comment here" data-validate="str" name="message" autocomplete="off">
                         <button>Send</button>

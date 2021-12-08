@@ -34,7 +34,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
         ?> -->
 
 <main>
-    <h1 class="welcome"><?= "Welcome {$user['first_name']} to KEA's Knowledge base" ?></h1>
+    <h1 class="welcome"><?= out("Welcome {$user['first_name']} to KEA's Knowledge base") ?></h1>
     <?php
     try {
         $db_path = $_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/db/users.db';

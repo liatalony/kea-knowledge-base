@@ -1,5 +1,6 @@
 // ##############################
 function validate(){
+  console.log("1");
     var elements_to_validate = all("[data-validate]")
     elements_to_validate.forEach(function(element){ element.classList.remove("validate_error") })
     elements_to_validate.forEach( function(element){
@@ -24,9 +25,14 @@ function validate(){
             element.classList.add("validate_error")
           }
         break;
-        case "pass":
-          if( element.value.length < 6 || element.value.length > 8 ){
-            element.classList.add("validate_error")
+        case "pass": 
+        // Checks if the password contains at least one number, lowercase letter, uppercase letter and special character.
+        // The first if statement is due to the fact that the check did not work when not in an if statement. ¯\_(ツ)_/¯
+           if (element.value !="") {
+            const re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}/;
+            if (!re.test(element.value)) {
+              element.classList.add("validate_error")
+            }
           }
         break;
         case "con_pass":

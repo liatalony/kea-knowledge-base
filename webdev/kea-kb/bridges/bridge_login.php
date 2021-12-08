@@ -1,5 +1,6 @@
 <?php
 
+
 if (!isset($_POST['email'])) {
     header('Location: /webdev/kea-kb/login');
     echo 'email';
@@ -35,8 +36,18 @@ try {
         exit();
     }
     if (hash("sha256", $_POST['pass'] . $user['salt'] . $pepper) !=  $user['user_password']) {
+        session_start();
+        $_SESSION['error'] = 'Wrong email or password';
+        $_SESSION['user_email'] = $user['email'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/bridges/bridge_login_log.php');
         header('Location: /webdev/kea-kb/login');
         exit();
+    }
+
+    if ($user['is_blocked'] == 1) {
+        session_start();
+        $_SESSION['user_email'] = $user['email'];
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/bridges/bridge_check_block.php');
     }
     session_start();
     $_SESSION['user_uuid'] = $user['user_uuid'];

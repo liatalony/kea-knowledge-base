@@ -81,9 +81,15 @@ function set_csrf()
 function is_csrf_valid()
 {
   if (!isset($_SESSION['csrf']) || !isset($_POST['csrf'])) {
+    echo "session: " . $_SESSION['csrf'];
+    echo "POST: " . $_POST['csrf'];
+    echo "missing";
+    exit();
     return false;
   }
   if ($_SESSION['csrf'] != $_POST['csrf']) {
+    echo "do not match";
+    exit();
     return false;
   }
   return true;

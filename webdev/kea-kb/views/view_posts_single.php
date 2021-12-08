@@ -1,10 +1,13 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/router.php');
+
 
 // get the post id from url:
 $postId = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
 session_start();
+$_SESSION['current_page'] = "post/$postId";
 if (!isset($_SESSION['user_uuid'])) {
     header('Location: /webdev/kea-kb/login');
     exit();
@@ -41,11 +44,11 @@ if (!isset($_SESSION['user_uuid'])) {
         <div class="post_owner">
             <img src="<?= $post['image_path'] ?>" alt="profile_pic" class="feed_profile">
             <div>
-                <h4><?= $post['first_name'] . ' ' . $post['last_name'] ?></h4>
+                <h4><?= out($post['first_name'] . ' ' . $post['last_name']) ?></h4>
                 <sub><?= $post['post_time'] ?></sub>
             </div>
         </div>
-        <h4 class="post_text"><?= $post['post_text'] ?></h4>
+        <h4 class="post_text"><?= out($post['post_text']) ?></h4>
         <?php
         if ($post['post_image_path'] != "none") {
         ?>
@@ -69,10 +72,10 @@ if (!isset($_SESSION['user_uuid'])) {
                         <div>
                             <div class="post_owner">
                                 <div>
-                                    <h5><?= $comment['first_name'] . ' ' . $comment['last_name'] ?></h5>
+                                    <h5><?= out($comment['first_name'] . ' ' . $comment['last_name']) ?></h5>
                                 </div>
                             </div>
-                            <p class="comment_text"><?= $comment['comment_text'] ?></p>
+                            <p class="comment_text"><?= out($comment['comment_text']) ?></p>
 
                         </div>
                     </div>
@@ -87,6 +90,7 @@ if (!isset($_SESSION['user_uuid'])) {
         <div class="comment_wrapper">
             <hr>
             <form action="/webdev/kea-kb/comment" method="POST" onsubmit="return validate()" enctype="multipart/form-data" class="profile_form">
+                <?php set_csrf(); ?>
                 <input type="hidden" name="postId" value="<?= $post['post_id'] ?>" />
                 <input type="text" placeholder="Write your comment here" data-validate="str" name="message" autocomplete="off">
                 <button>Send</button>

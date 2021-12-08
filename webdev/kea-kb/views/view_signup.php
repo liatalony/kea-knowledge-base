@@ -18,7 +18,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
             <label for="email">Email</label>
             <input type="text" placeholder="Email" data-validate="email" name="email">
             <label for="pass">Password</label>
-            <input type="password" placeholder="Between 6 to 8 characters" data-validate="pass" name="pass">
+            <sub>(Min 6 character with at least 1 number and special character)</sub>
+            <input type="password" placeholder="Choose a good one" data-validate="pass" name="pass">
             <label for="con_pass">Confirm password</label>
             <input type="password" data-validate="con_pass" name="con_pass" placeholder="Confirm password">
             <button>Sign up</button>
@@ -30,7 +31,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 
     </div>
 
-    <script src="../js/validator.js"></script>
+    <script src="/webdev/kea-kb/js/validator.js"></script>
 
 </body>
 

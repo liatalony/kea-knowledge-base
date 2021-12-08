@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 ?>
 <title>login</title>
@@ -10,7 +11,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
         <form action="/webdev/kea-kb/login" method="POST" onsubmit="return validate()" class="login">
 
             <h1>Login</h1>
-
+            <?php
+            if (isset($_SESSION['error'])) {
+            ?>
+                <sub><?= $_SESSION['error'] ?></sub>
+            <?php
+                session_destroy();
+            }
+            ?>
             <label for="email">Email</label>
             <input type="text" placeholder="Email" data-validate="email" name="email">
             <label for="pass">Password</label>
@@ -23,7 +31,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 
         </form>
     </div>
-    <script src="../js/validator.js"></script>
+    <script src="/webdev/kea-kb/js/validator.js"></script>
 </body>
 
 </html>

@@ -34,10 +34,13 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     echo 'bad email';
     exit();
 }
-if (
-    strlen($_POST['pass']) < 6 ||
-    strlen($_POST['pass']) > 8
-) {
+
+$number = preg_match('@[0-9]@', $_POST['pass']);
+$uppercase = preg_match('@[A-Z]@', $_POST['pass']);
+$lowercase = preg_match('@[a-z]@', $_POST['pass']);
+$specialChars = preg_match('@[^\w]@', $_POST['pass']);
+
+if (strlen($_POST['pass']) < 6 || !$number || !$uppercase || !$lowercase || !$specialChars) {
     header('Location: /webdev/kea-kb/signup');
     echo 'password length';
     exit();
@@ -61,19 +64,17 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $q = $db->prepare(' INSERT INTO users
-                    VALUES (:user_uuid , :first_name , :last_name , :email, :salt , :password ,:user_role, :active, :image_path)');
+                    VALUES (:user_uuid , :first_name , :last_name , :email, :salt , :password ,:user_role, :active, :image_path, :is_blocked)');
     $q->bindValue(':user_uuid', bin2hex(random_bytes(16)));
     $q->bindValue(':first_name', $_POST['first_name']);
     $q->bindValue(':last_name', $_POST['last_name']);
     $q->bindValue(':email', $_POST['email']);
     $q->bindValue(':salt', $salt);
-
     $q->bindValue(':password', $hashed_salted);
-    //$q->bindValue(':password', password_hash($_POST['pass'], PASSWORD_DEFAULT));
-
     $q->bindValue(':user_role', 2);
     $q->bindValue(':active', 1);
-    $q->bindValue(':image_path', "/images/default.jpg");
+    $q->bindValue(':image_path', "webdev/kea-kb/images/default.jpg");
+    $q->bindValue(':is_blocked', 0);
     $q->execute();
     $user = $q->fetch();
 
