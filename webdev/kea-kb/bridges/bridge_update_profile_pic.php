@@ -1,10 +1,13 @@
 <?php
 session_start();
 
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/router.php');
-is_csrf_valid();
-
+if (!is_csrf_valid()) {
+    session_destroy();
+    $message = "Something went wrong and we had to log you out. please try again.";
+    echo "<script type='text/javascript'>alert('$message'); window.location.replace('/webdev/kea-kb/login');</script>";
+    exit();
+}
 if (!isset($_SESSION['user_uuid'])) {
     header('Location: /webdev/kea-kb/login');
     exit();

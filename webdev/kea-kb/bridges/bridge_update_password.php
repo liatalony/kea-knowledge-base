@@ -1,5 +1,13 @@
 <?php
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/router.php');
+
+if (!is_csrf_valid()) {
+    session_destroy();
+    $message = "Something went wrong and we had to log you out. please try again.";
+    echo "<script type='text/javascript'>alert('$message'); window.location.replace('/webdev/kea-kb/login');</script>";
+    exit();
+}
 if (!isset($_POST['pass'])) {
     header("Location: /webdev/kea-kb/reset-pass/{$_POST['user_uuid']}");
     echo 'password';

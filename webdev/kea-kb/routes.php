@@ -44,6 +44,10 @@ post('/webdev/kea-kb/admin', '/webdev/kea-kb/bridges/bridge_create_project.php')
 
 post('/webdev/kea-kb/deactivate', '/webdev/kea-kb/bridges/bridge_deactivate.php');
 
+//leave comment from main feed page or from /post/number individual post
+post('/webdev/kea-kb/comment', '/webdev/kea-kb/bridges/bridge_create_comment.php');
+post('/webdev/kea-kb/post/comment', '/webdev/kea-kb/bridges/bridge_create_comment.php');
+
 post('/webdev/kea-kb/create-users-table', '/webdev/kea-kb/db/db_create_table_users.php');
 post('/webdev/kea-kb/create-comments-table', '/webdev/kea-kb/db/db_create_table_comments.php');
 post('/webdev/kea-kb/create-posts-table', '/webdev/kea-kb/db/db_create_table_posts.php');
@@ -70,9 +74,6 @@ post('/webdev/kea-kb/users/delete/$user_id', '/webdev/kea-kb/apis/api_delete_use
 
 post('/webdev/kea-kb/post', '/webdev/kea-kb/bridges/bridge_create_post.php');
 
-//leave comment from main feed page or from /post/number individual post
-post('/webdev/kea-kb/comment', '/webdev/kea-kb/bridges/bridge_create_comment.php');
-post('/webdev/kea-kb/post/comment', '/webdev/kea-kb/bridges/bridge_create_comment.php');
 
 
 // ##############################¨

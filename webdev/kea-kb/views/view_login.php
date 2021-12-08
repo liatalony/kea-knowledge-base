@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (isset($_SESSION['user_uuid'])) {
+    header('Location: /webdev/kea-kb/admin');
+    exit();
+}
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 ?>
 <title>login</title>

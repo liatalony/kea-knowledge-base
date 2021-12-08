@@ -13,7 +13,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
     <div class="form_wrapper">
 
         <form action="/webdev/kea-kb/update-password" method="POST" onsubmit="return validate()">
-
+            <?php set_csrf(); ?>
             <h1>Reset Password</h1>
             <input type="hidden" value="<?= $user_uuid ?>" name="user_uuid">
             <label for="pass">New Password</label>
