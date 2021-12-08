@@ -6,7 +6,6 @@ if (!is_csrf_valid()) {
     session_destroy();
     $message = "Something went wrong and we had to log you out. please try again.";
     echo "<script type='text/javascript'>alert('$message'); window.location.replace('/webdev/kea-kb/login');</script>";
-    //header("Location: /webdev/kea-kb/login");
     exit();
 }
 if ($_SESSION['user_role'] == 2) {
