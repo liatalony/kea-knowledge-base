@@ -52,9 +52,19 @@ if (!isset($_POST['con_pass'])) {
 }
 
 if (
-    strlen($_POST['pass']) < 6 ||
-    strlen($_POST['pass']) > 8
+    strlen($_POST['pass']) < 6
 ) {
+    header('Location: /webdev/kea-kb/profile');
+    echo 'password length';
+    exit();
+}
+
+$number = preg_match('@[0-9]@', $_POST['pass']);
+$uppercase = preg_match('@[A-Z]@', $_POST['pass']);
+$lowercase = preg_match('@[a-z]@', $_POST['pass']);
+$specialChars = preg_match('@[^\w]@', $_POST['pass']);
+
+if (strlen($_POST['pass']) < 6 || !$number || !$uppercase || !$lowercase || !$specialChars) {
     header('Location: /webdev/kea-kb/profile');
     echo 'password length';
     exit();

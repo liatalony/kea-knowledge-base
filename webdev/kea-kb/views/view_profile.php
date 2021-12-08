@@ -76,7 +76,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
             if ($_SESSION['user_role'] == 1) {
     ?>
         <form action="/webdev/kea-kb/profile" method="POST" onsubmit="return validate()" class="profile_form" enctype="multipart/form-data">
-            <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
+            <?php set_csrf(); ?>
             <label for=" pass">Password</label>
             <input type="password" placeholder="Between 6 to 8 characters" data-validate="pass" name="pass">
             <label for="con_pass">Confirm password</label>
