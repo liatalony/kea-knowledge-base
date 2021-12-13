@@ -73,7 +73,7 @@ try {
     $q->bindValue(':password', $hashed_salted);
     $q->bindValue(':user_role', 2);
     $q->bindValue(':active', 1);
-    $q->bindValue(':image_path', "webdev/kea-kb/images/default.jpg");
+    $q->bindValue(':image_path', "/webdev/kea-kb/images/default.jpg");
     $q->bindValue(':is_blocked', 0);
     $q->execute();
     $user = $q->fetch();

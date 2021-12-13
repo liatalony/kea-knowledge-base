@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/router.php');
 
@@ -6,7 +7,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/router.php');
 // get the post id from url:
 $postId = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
-session_start();
 $_SESSION['current_page'] = "post/$postId";
 if (!isset($_SESSION['user_uuid'])) {
     header('Location: /webdev/kea-kb/login');
@@ -45,7 +45,7 @@ if (!isset($_SESSION['user_uuid'])) {
             <img src="<?= $post['image_path'] ?>" alt="profile_pic" class="feed_profile">
             <div>
                 <h4><?= out($post['first_name'] . ' ' . $post['last_name']) ?></h4>
-                <sub><?= $post['post_time'] ?></sub>
+                <sub><?= date("F j, Y, g:i a", strtotime($post['post_time'])) ?></sub>
             </div>
         </div>
         <h4 class="post_text"><?= out($post['post_text']) ?></h4>

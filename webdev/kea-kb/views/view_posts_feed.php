@@ -36,7 +36,7 @@ try {
                     <img src="<?= $post['image_path'] ?>" alt="profile_pic" class="feed_profile">
                     <div>
                         <h4><?= out($post['first_name'] . ' ' . $post['last_name']) ?></h4>
-                        <sub><?= $post['post_time'] ?></sub>
+                        <sub><?= date("F j, Y, g:i a", strtotime($post['post_time'])); ?></sub>
                     </div>
                 </div>
                 <h4 class="post_text"><?= out($post['post_text']) ?></h4>
