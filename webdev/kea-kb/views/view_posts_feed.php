@@ -1,9 +1,9 @@
 <?php
+session_start();
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/router.php');
 
-session_start();
 $_SESSION['current_page'] = "feed";
 
 if (!isset($_SESSION['user_uuid'])) {

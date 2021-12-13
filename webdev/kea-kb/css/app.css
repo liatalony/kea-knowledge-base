@@ -5,10 +5,6 @@
     font-family: sans-serif;
 }
 
-body {
-    background-color: #210030;
-}
-
 .form_wrapper {
     display: flex;
     flex-direction: column;
@@ -131,7 +127,7 @@ main h1 {
 }
 
 .user {
-    background-color: rgba(58, 2, 85, 0.2);
+    background-color: #ea504571;
     padding: 1rem;
     border-radius: 5px;
 }

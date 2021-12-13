@@ -6,16 +6,13 @@ if (!isset($_SESSION['user_uuid'])) {
 }
 
 if ($_SESSION['user_role'] != 1) {
-    header('Location: /webdev/kea-kb/admin');
+    header('Location: /webdev/kea-kb/404');
     exit();
 }
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 ?>
 <title>Users</title>
-<?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_admin_top.php');
-?>
 
 <main>
     <h1>Users</h1>
@@ -44,8 +41,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_admin_top.ph
                 <div><?= $user['last_name'] ?></div>
                 <div class="bold">EMAIL: </div>
                 <div><?= $user['email'] ?></div>
-                <div class="bold">AGE: </div>
-                <div><?= $user['age'] ?></div>
                 <button onclick="delete_user('<?= $user['user_uuid'] ?>')">Delete user</button>
             </div>
     <?php

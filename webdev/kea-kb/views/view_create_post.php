@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 ?>
 <!-- <title>create a post</title> -->

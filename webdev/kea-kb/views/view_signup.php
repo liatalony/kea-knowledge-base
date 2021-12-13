@@ -1,10 +1,24 @@
-<?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
-?>
-<title>sign up</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webdev/kea-kb/css/app.css">
+    <link rel="stylesheet" href="/webdev/kea-kb/css/post.css">
+    <title>Sign up</title>
 </head>
 
-<body>
+<body class="main">
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#"><img src="/webdev/kea-kb/images/logo-main-black-single.png" alt="logo" style="width: 60px;"></a>
+            </div>
+    </header>
 
     <div class="form_wrapper">
 
@@ -18,7 +32,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
             <label for="email">Email</label>
             <input type="text" placeholder="Email" data-validate="email" name="email">
             <label for="pass">Password</label>
-            <sub>(Min 6 character with at least 1 number and special character)</sub>
+            <sub>(Min 6 character with at least 1 lowecase letter, uppercase letter, number and special character)</sub>
             <input type="password" placeholder="Choose a good one" data-validate="pass" name="pass">
             <label for="con_pass">Confirm password</label>
             <input type="password" data-validate="con_pass" name="con_pass" placeholder="Confirm password">

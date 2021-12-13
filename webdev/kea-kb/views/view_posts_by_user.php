@@ -1,8 +1,6 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/router.php');
 
-session_start();
 if (!isset($_SESSION['user_uuid'])) {
     header('Location: /webdev/kea-kb/login');
     exit();
