@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_uuid'])) {
+    header('Location: /webdev/kea-kb/login');
+    exit();
+}
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/router.php');
 if (!is_csrf_valid()) {
@@ -9,10 +13,6 @@ if (!is_csrf_valid()) {
     exit();
 }
 if ($_SESSION['user_role'] == 2) {
-    if (!isset($_SESSION['user_uuid'])) {
-        header('Location: /webdev/kea-kb/login');
-        exit();
-    }
     if (!isset($_POST['first_name'])) {
         header('Location: /webdev/kea-kb/profile');
         echo 'first name';

@@ -10,15 +10,7 @@ function validate(){
           ){
             element.classList.add("validate_error")
           }
-        break;
-        case "age":
-          if( ! parseInt(element.value)  ||
-              parseInt(element.value) < 12 || 
-              parseInt(element.value) > 99 
-          ){
-            element.classList.add("validate_error")
-          }
-        break;      
+        break;  
         case "email":
           const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           if( ! re.test(element.value.toLowerCase()) ){

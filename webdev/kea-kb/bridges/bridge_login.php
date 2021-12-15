@@ -53,7 +53,7 @@ try {
     $_SESSION['user_uuid'] = $user['user_uuid'];
     $_SESSION['user_role'] = $user['user_role'];
 
-    header('Location: /webdev/kea-kb/admin');
+    header('Location: /webdev/kea-kb/feed');
     exit();
 } catch (PDOException $ex) {
     echo $ex;

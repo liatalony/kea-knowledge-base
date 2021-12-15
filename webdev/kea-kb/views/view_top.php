@@ -16,7 +16,6 @@
             <div class="logo">
                 <a href="#"><img src="/webdev/kea-kb/images/logo-main-black-single.png" alt="logo" style="width: 60px;"></a>
             </div>
-            <a href="/webdev/kea-kb/admin">Home</a>
             <?php
             if ($_SESSION['user_role'] == 1) {
                 echo '<a href="/webdev/kea-kb/users">Users</a>';
@@ -26,5 +25,6 @@
             <a href="/webdev/kea-kb/post">New post</a>
             <a href="/webdev/kea-kb/profile">Profile</a>
             <a href="/webdev/kea-kb/logout">Log out</a>
+
         </nav>
     </header>

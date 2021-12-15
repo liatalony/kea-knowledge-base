@@ -33,7 +33,7 @@ form input {
     border-radius: 5px;
     margin-bottom: 1rem;
     width: 100%;
-    border: none;
+    border: 1px solid lightgray;
 }
 
 form label {
@@ -166,71 +166,6 @@ h2 {
     display: inline-block;
 }
 
-.add {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    font-weight: bold;
-    padding: .5rem .8rem;
-    border-radius: 50px;
-    background-color: rgba(58, 2, 85, 1);
-    margin-left: auto;
-    width: 34px;
-    overflow: hidden;
-    transition: 1s;
-
-}
-
-.add a:last-child {
-    color: white;
-    text-decoration: none;
-    margin: 0 .5rem;
-}
-
-.add a,
-.add a:visited {
-    color: white;
-    text-decoration: none;
-}
-
-.slide {
-    overflow: hidden;
-    height: 1rem;
-}
-
-.add:hover {
-    width: max-content;
-}
-
-#projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
-    grid-gap: 1rem;
-    margin-top: 2rem;
-}
-
-#projects a {
-    text-decoration: none;
-    color: black;
-}
-
-#projects a:visited {
-    color: black;
-}
-
-#projects .project {
-    font-weight: bold;
-    padding: 1rem;
-    background-color: rgba(58, 2, 85, 0.2);
-    width: inherit;
-    height: 150px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 15px;
-}
-
 .img {
     height: 200px;
     width: 200px;
@@ -252,28 +187,6 @@ img {
 
 .hidden {
     display: none;
-}
-
-.new_project {
-    margin-top: 20%;
-    background-color: #D4CCD9;
-}
-
-.new_project h2 {
-
-    display: block;
-    width: max-content;
-    margin-left: auto;
-    cursor: pointer;
-}
-
-.bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 button.delete {

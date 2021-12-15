@@ -31,6 +31,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
         echo '<div id="users">';
         foreach ($users as $user) {
             unset($user['user_password']);
+            unset($user['salt']);
     ?>
             <div class="user">
                 <div class="bold">ID: </div>

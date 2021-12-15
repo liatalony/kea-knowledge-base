@@ -22,7 +22,7 @@
 
     <div class="form_wrapper">
 
-        <form action="/webdev/kea-kb/signup" method="POST" onsubmit="return validate()" enctype="multipart/form-data" class="login">
+        <form action="/webdev/kea-kb/signup" method="POST" onsubmit="return validate()" enctype="multipart/form-data" class="login single_post_wrapper">
 
             <h1>Sign up</h1>
             <label for="first_name">First name</label>

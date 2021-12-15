@@ -31,7 +31,7 @@ if (isset($_SESSION['user_uuid'])) {
     <body>
         <div class="form_wrapper">
 
-            <form action="/webdev/kea-kb/login" method="POST" onsubmit="return validate()" class="login">
+            <form action="/webdev/kea-kb/login" method="POST" onsubmit="return validate()" class="login single_post_wrapper">
 
                 <h1>Login</h1>
                 <?php
