@@ -38,7 +38,7 @@ div.post_owner{
 div.post_owner h5{
     margin-top: auto;
 }
-img.feed_profile{
+.feed_profile{
     display: inline;
     width: 40px;
     height: 40px;

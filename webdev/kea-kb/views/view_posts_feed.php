@@ -11,11 +11,9 @@ if (!isset($_SESSION['user_uuid'])) {
     exit();
 }
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/db.php');
+
 try {
-    $db_path = $_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/db/users.db';
-    $db = new PDO("sqlite:$db_path");
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $q = $db->prepare('SELECT * FROM posts
                     INNER JOIN users
                     ON posts.user_uuid = users.user_uuid
@@ -33,7 +31,7 @@ try {
         ?>
             <div class="single_post_wrapper">
                 <div class="post_owner">
-                    <img src="<?= $post['image_path'] ?>" alt="profile_pic" class="feed_profile">
+                    <div class="feed_profile" style="background-image: url('<?= $post['image_path'] ?>'); background-repeat:no-repeat; background-size:cover; background-position:center;"></div>
                     <div>
                         <h4><?= out($post['first_name'] . ' ' . $post['last_name']) ?></h4>
                         <sub><?= date("F j, Y, g:i a", strtotime($post['post_time'])); ?></sub>
@@ -56,10 +54,6 @@ try {
 
                     <?php
                     try {
-                        $db_path = $_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/db/users.db';
-                        $db = new PDO("sqlite:$db_path");
-                        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
                         $q = $db->prepare('SELECT *
                                     FROM comments
                                     INNER JOIN users

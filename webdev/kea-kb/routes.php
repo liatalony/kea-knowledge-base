@@ -37,6 +37,8 @@ get('/webdev/kea-kb/post/$post_id', '/webdev/kea-kb/views/view_posts_single.php'
 
 get('/webdev/kea-kb/feed', '/webdev/kea-kb/views/view_posts_feed.php');
 
+get('/webdev/kea-kb/test', '/webdev/kea-kb/test.php');
+
 
 
 // ##############################¨

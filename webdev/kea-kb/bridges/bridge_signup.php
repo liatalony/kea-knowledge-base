@@ -58,9 +58,9 @@ $pepper = "87d6452f30effac18a0ebfd7cfcdd4cc";
 
 $salt = bin2hex(openssl_random_pseudo_bytes(10));
 $hashed_salted = hash("sha256", $_POST['pass'] . $salt . $pepper);
+require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/db.php');
+
 try {
-    $db_path = $_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/db/users.db';
-    $db = new PDO("sqlite:$db_path");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $q = $db->prepare(' INSERT INTO users

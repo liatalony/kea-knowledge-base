@@ -5,9 +5,10 @@ if (!isset($_SESSION['user_uuid'])) {
     exit();
 }
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/db.php');
+
 try {
-    $db_path = $_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/db/users.db';
-    $db = new PDO("sqlite:$db_path");
+
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $q = $db->prepare('SELECT * FROM users WHERE user_uuid = :user_uuid');
@@ -44,10 +45,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/webdev/kea-kb/views/view_top.php');
             ?>
                 <form action="/webdev/kea-kb/profile-pic" method="POST" class="profile_form" enctype="multipart/form-data">
                     <?php set_csrf(); ?>
-                    <div class="img" <?php if ($user['image_path'] == 'NULL') {
-                                            echo 'class="hidden"';
-                                        } ?>>
-                        <img src="<?= $user['image_path'] ?>" alt="profile_picture" class="profile_pic">
+                    <div class="img" style="background-image: url('<?= $user['image_path'] ?>'); background-repeat:no-repeat; background-size:cover; background-position:center;">
                     </div>
                     <label for="pic">Profile picture</label>
                     <input type="file" name="pic" data-validate="pic">
